@@ -14,13 +14,13 @@ import java.util.Random;
  */
 public class entity {
     
-    private String name;
-    private int initiative;
-    private int[] eigenschaft;
-    private int lep;
-    private int lepmax;
-    private boolean tot;
-    private boolean turn;
+    public String name;
+    public int initiative;
+    public int[] eigenschaft;
+    public int lep;
+    public int lepmax;
+    public boolean tot;
+    public boolean turn;
     Random generator = new Random();
 
     public entity(String name,int initiative,int[] eigenschaft, int lep){           //a constructor that outputs an entity with
@@ -72,7 +72,7 @@ public class entity {
     }
     
     public void modini(int i){
-        this.initiative=this.initiative-i;
+        this.initiative=this.initiative+i;
     }
     
     public int getstat(int i){
@@ -84,7 +84,7 @@ public class entity {
     }
     
     public void modlep(int i){
-        this.lep=this.lep-i;
+        this.lep=this.lep+i;
     }
     
     public boolean gettot(){
