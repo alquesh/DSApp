@@ -12,6 +12,13 @@ import java.util.Random;
  *
  * @author Alquesh
  */
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 public class entity {
     
     public String name;
@@ -21,16 +28,20 @@ public class entity {
     public int lepmax;
     public boolean tot;
     public boolean turn;
+    public int[] wunde;
     Random generator = new Random();
 
     public entity(String name,int initiative,int[] eigenschaft, int lep){           //a constructor that outputs an entity with
         this.name=name;                                                             //the given stats
-        this.initiative =initiative;
+        this.initiative=initiative;
         this.eigenschaft=eigenschaft;
         this.lep=lep;
         this.lepmax=lep;
         this.tot=false;
         this.turn=false;
+        for(int i=0;i<=7;i++){
+            this.wunde[i]=0;
+        }
     }
     
     public entity(int nummer){                                                      //a constructor that outputs an entity with random
@@ -44,6 +55,9 @@ public class entity {
         this.lepmax=this.lep;
         this.tot=false;
         this.turn=false;
+        for(int i=0;i<=7;i++){
+            this.wunde[i]=0;
+        }
     }
     
     public void printsheet() {
