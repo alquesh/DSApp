@@ -28,50 +28,48 @@ public class entity {
     public int lepmax;
     public boolean tot;
     public boolean turn;
-    public int[] wunde;
-    Random generator = new Random();
+    //public int[] wunde;
+    //Random generator = new Random();
 
-    public entity(String name,int initiative,int[] eigenschaft, int lep){           //a constructor that outputs an entity with
-        this.name=name;                                                             //the given stats
-        this.initiative=initiative;
-        this.eigenschaft=eigenschaft;
-        this.lep=lep;
-        this.lepmax=lep;
+    public entity(){           //a constructor that outputs an entity with
+        this.name="PH";                                                             //the given stats
+        this.initiative=10;
+        this.eigenschaft=new int[8];
+        this.lep=20;
+        this.lepmax=20;
         this.tot=false;
         this.turn=false;
-        for(int i=0;i<=7;i++){
-            this.wunde[i]=0;
-        }
+        //for(int i=0;i<=7;i++){
+        //    this.wunde[i]=0;
+        //}
     }
     
-    public entity(int nummer){                                                      //a constructor that outputs an entity with random
+    public void generate(int name, int ini,int[] eig, int lep){                                                      //a constructor that outputs an entity with random
                                                                                     //values within an expected range
-        this.name=("Gegner "+ nummer);                                              //used for NPC generation or testing
-        this.initiative=(8+generator.nextInt(10));
-        for(int i=0;i>=7;i++){
-        this.eigenschaft[i]=(8+generator.nextInt(6));    
-        }
-        this.lep=30+(generator.nextInt(10)-5);
-        this.lepmax=this.lep;
+        this.name=("Gegner ");                                              //used for NPC generation or testing
+        this.initiative=10+ini;
+        this.eigenschaft=eig;    
+        this.lep=25+lep;
+        this.lepmax=25+lep;
         this.tot=false;
         this.turn=false;
-        for(int i=0;i<=7;i++){
-            this.wunde[i]=0;
-        }
+        //for(int i=0;i<=7;i++){
+        //    this.wunde[i]=0;
+        //}
     }
     
     public void printsheet() {
-        System.out.printf("Name             : %s", this.name);
-        System.out.printf("Initiative       : %d", this.initiative);
-        System.out.printf("Mut              : %d", this.eigenschaft[0]);
-        System.out.printf("Klugheit         : %d", this.eigenschaft[1]);
-        System.out.printf("Intuition        : %d", this.eigenschaft[2]);
-        System.out.printf("Charisma         : %d", this.eigenschaft[3]);
-        System.out.printf("Fingerfertigkeit : %d", this.eigenschaft[4]);
-        System.out.printf("Gewandheit       : %d", this.eigenschaft[5]);
-        System.out.printf("Konstitution     : %d", this.eigenschaft[6]);
-        System.out.printf("Körperkraft      : %d", this.eigenschaft[7]);
-        System.out.printf("Lebenspunkte     : %d / %d", this.lep, this.lepmax);
+        System.out.printf("Name             : %s\n", this.name);
+        System.out.printf("Initiative       : %d\n", this.initiative);
+        System.out.printf("Mut              : %d\n", this.eigenschaft[0]);
+        System.out.printf("Klugheit         : %d\n", this.eigenschaft[1]);
+        System.out.printf("Intuition        : %d\n", this.eigenschaft[2]);
+        System.out.printf("Charisma         : %d\n", this.eigenschaft[3]);
+        System.out.printf("Fingerfertigkeit : %d\n", this.eigenschaft[4]);
+        System.out.printf("Gewandheit       : %d\n", this.eigenschaft[5]);
+        System.out.printf("Konstitution     : %d\n", this.eigenschaft[6]);
+        System.out.printf("Körperkraft      : %d\n", this.eigenschaft[7]);
+        System.out.printf("Lebenspunkte     : %d / %d\n", this.lep, this.lepmax);
         this.totcheck();
         
     }
