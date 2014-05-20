@@ -26,13 +26,13 @@ public class entity {
     public int[] eigenschaft;
     public int lep;
     public int lepmax;
-    public boolean tot;
-    public boolean turn;
+    public boolean tot;																	
+    public boolean turn;										//tracks wether the object allready had a turn this round
     //public int[] wunde;
     //Random generator = new Random();
 
-    public entity(){           //a constructor that outputs an entity with
-        this.name="PH";                                                             //the given stats
+    public entity(){                                         //a constructor that outputs an entity with default stats
+        this.name="PH";                                      //for now only intended to 
         this.initiative=10;
         this.eigenschaft=new int[8];
         this.lep=20;
@@ -44,9 +44,9 @@ public class entity {
         //}
     }
     
-    public void generate(int name, int ini,int[] eig, int lep){                                                      //a constructor that outputs an entity with random
+    public void generate(int name, int ini,int[] eig, int lep){                     //a constructor that outputs an entity with random
                                                                                     //values within an expected range
-        this.name=("Gegner ");                                              //used for NPC generation or testing
+        this.name=("Gegner ");                                              								//used for NPC generation or testing
         this.initiative=10+ini;
         this.eigenschaft=eig;    
         this.lep=25+lep;
