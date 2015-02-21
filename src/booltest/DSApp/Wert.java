@@ -1,12 +1,17 @@
+package DSApp;
+
+import java.util.HashSet;
+
+
 public class Wert {
   public String name;
   public int value;
-  public HashSet[modifier] modifiers;
+  public HashSet<modifier> modifiers;
   
   public Wert(String name, int value){
     this.name = name;
     this.value = value;
-    modifiers = new HashSet[modifier]();
+    modifiers = new HashSet<modifier>();
   }
 
   public Wert(Wert that){
