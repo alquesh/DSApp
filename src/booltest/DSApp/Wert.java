@@ -32,4 +32,12 @@ public class Wert {
   public String toString(){
     return name+": "+netValue();
   }
+  
+  public String descriptor(){
+    return name;
+  }
+  
+  public void addModifier(modifier m){
+    modifiers.add(m);
+  }
 }
