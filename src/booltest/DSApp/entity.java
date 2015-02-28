@@ -16,6 +16,7 @@ import java.util.Random;
 public class entity {
     
     public String name;
+    public int id;
     public Wert initiative;
     public HashSet<Wert> eigenschaft;
     public Wert lep;
