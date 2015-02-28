@@ -17,4 +17,8 @@ public class timedModifier extends modifier{
   public String toString(){
     return descriptor+": "+wert+" Turns remaining: "+turnsremaining;
   }
+  
+  public void tickDown(){
+    turnsremaining--;
+  }
 }
