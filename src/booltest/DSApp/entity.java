@@ -12,91 +12,61 @@ import java.util.Random;
  *
  * @author Alquesh
  */
- 
- 
- 
- 
- 
- 
- 
+
 public class entity {
     
     public String name;
-    public int initiative;
-    public int[] eigenschaft;
-    public int lep;
+    public Wert initiative;
+    public HashSet<Wert> eigenschaft;
+    public Wert lep;
     public int lepmax;
     public boolean tot;																	
-    public boolean turn;										//tracks wether the object allready had a turn this round
-    //public int[] wunde;
-    //Random generator = new Random();
+    public boolean turn;										
 
-    public entity(){                                         //a constructor that outputs an entity with default stats
-        this.name="PH";                                      //for now only intended to 
-        this.initiative=10;
-        this.eigenschaft=new int[8];
-        this.lep=20;
+    public entity(){                                         
+        this.name="PH";                                      
+        this.initiative= new Wert(10, "Initiative")
+        this.eigenschaft= {new Wert(10, "Körperkraft"),new Wert(10, "Konstitution"),new Wert(10, "Gewandheit"),new Wert(10, "Fingerfertigkeit")
+                           new Wert(10, "Mut"),new Wert(10, "Charisma"),new Wert(10, "Klugheit"),new Wert(10, "Intuition")}
+        }
+        this.lep= new Wert(20, "LeP");
         this.lepmax=20;
         this.tot=false;
         this.turn=false;
-        //for(int i=0;i<=7;i++){
-        //    this.wunde[i]=0;
-        //}
     }
     
-    public void generate(int name, int ini,int[] eig, int lep){                     //a constructor that outputs an entity with random
-                                                                                    //values within an expected range
-        this.name=("Gegner ");                                              								//used for NPC generation or testing
-        this.initiative=10+ini;
-        this.eigenschaft=eig;    
-        this.lep=25+lep;
-        this.lepmax=25+lep;
-        this.tot=false;
-        this.turn=false;
-        //for(int i=0;i<=7;i++){
-        //    this.wunde[i]=0;
-        //}
+    public void printsheet(PrintWriter out) {
+        for (Wert w: eigenschaft){
+         out.printl(w);
+        }
     }
-    
-    public void printsheet() {
-        System.out.printf("Name             : %s\n", this.name);
-        System.out.printf("Initiative       : %d\n", this.initiative);
-        System.out.printf("Mut              : %d\n", this.eigenschaft[0]);
-        System.out.printf("Klugheit         : %d\n", this.eigenschaft[1]);
-        System.out.printf("Intuition        : %d\n", this.eigenschaft[2]);
-        System.out.printf("Charisma         : %d\n", this.eigenschaft[3]);
-        System.out.printf("Fingerfertigkeit : %d\n", this.eigenschaft[4]);
-        System.out.printf("Gewandheit       : %d\n", this.eigenschaft[5]);
-        System.out.printf("Konstitution     : %d\n", this.eigenschaft[6]);
-        System.out.printf("Körperkraft      : %d\n", this.eigenschaft[7]);
-        System.out.printf("Lebenspunkte     : %d / %d\n", this.lep, this.lepmax);
-        this.totcheck();
-        
-    }
-    
     
     public String getname(){
         return this.name;
     }
     
     public int getini(){
-        return this.initiative;
+        return this.initiative.netValue();
     }
     
-    public void modini(int i){
-        this.initiative=this.initiative+i;
+    public void modini(modifier m){
+        this.initiative.addModifier(m)
     }
     
-    public int getstat(int i){
-        return this.eigenschaft[i];
+    public int getstat(String name){
+        for (wert w : eigenschaft){
+         if (w.descriptor.equals(name)){
+          return w.netValue();
+         } 
+        }
     }
     
     public int getlep(){
-        return this.lep;
+        return this.lep.netValue();
     }
     
-    public void modlep(int i){
-        this.lep=this.lep+i;
+    public void modlep(modifier m){
+        this.lep.addModifier(m);
     }
     
     public boolean gettot(){
