@@ -6,8 +6,8 @@
 
 package DSApp;
 
-import java.util.Random;
-
+import java.io.PrintWriter;
+import java.util.*;
 /**
  *
  * @author Alquesh
@@ -25,11 +25,12 @@ public class entity {
     public boolean turn;										
 
     public entity(){                                         
-        this.name="PH";                                      
-        this.initiative= new Wert(10, "Initiative")
-        this.eigenschaft= {new Wert(10, "KÃ¶rperkraft"),new Wert(10, "Konstitution"),new Wert(10, "Gewandheit"),new Wert(10, "Fingerfertigkeit")
-                           new Wert(10, "Mut"),new Wert(10, "Charisma"),new Wert(10, "Klugheit"),new Wert(10, "Intuition")}
-        }
+        this.name="PH";
+        Wert[] temp1 = {new Wert(10, "Körperkraft"),new Wert(10, "Konstitution"),new Wert(10, "Gewandheit"),new Wert(10, "Fingerfertigkeit"),
+                		new Wert(10, "Mut"),new Wert(10, "Charisma"),new Wert(10, "Klugheit"),new Wert(10, "Intuition")};
+        List<Wert> temp2 = Arrays.asList(temp1);
+        this.eigenschaft= new HashSet<Wert>(temp2);
+        this.initiative= new Wert(10, "Initiative");
         this.lep= new Wert(20, "LeP");
         this.lepmax=20;
         this.tot=false;
@@ -38,7 +39,7 @@ public class entity {
     
     public void printsheet(PrintWriter out) {
         for (Wert w: eigenschaft){
-         out.printl(w);
+         out.println(w);
         }
     }
     
@@ -51,15 +52,16 @@ public class entity {
     }
     
     public void modini(modifier m){
-        this.initiative.addModifier(m)
+        this.initiative.addModifier(m);
     }
     
     public int getstat(String name){
-        for (wert w : eigenschaft){
-         if (w.descriptor.equals(name)){
+        for (Wert w : eigenschaft){
+         if (w.descriptor().equals(name)){
           return w.netValue();
          } 
         }
+        return 0;
     }
     
     public int getlep(){
@@ -75,7 +77,7 @@ public class entity {
     }
     
     public void totcheck(){
-        if (this.lep<= 0) {
+        if (this.lep.netValue()<= 0) {
             this.tot=true;
             System.out.printf("%s ist tot.", this.name);
         }else{

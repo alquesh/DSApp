@@ -8,14 +8,14 @@ public class Wert {
   public int value;
   public HashSet<modifier> modifiers;
   
-  public Wert(String name, int value){
+  public Wert(int value,String name){
     this.name = name;
     this.value = value;
     modifiers = new HashSet<modifier>();
   }
 
   public Wert(Wert that){
-    this(that.name, that.value);
+    this(that.value, that.name);
   }
   
   public int netValue(){            //calculates the actual value based on

@@ -11,7 +11,7 @@ public class timedModifier extends modifier{
   }
   
   public timedModifier(timedModifier that){
-    this(that.wert, that.descriptor, that.turns);
+    this(that.wert, that.descriptor, that.turnsremaining);
   }
   
   public String toString(){
